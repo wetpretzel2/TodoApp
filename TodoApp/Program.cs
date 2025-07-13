@@ -83,7 +83,11 @@
                 return;
             }
             TimeSpan recurrenceInterval = TimeSpan.FromDays(days);
-
+            if (recurrenceInterval.TotalDays <= 0)
+            {
+                Console.WriteLine("Recurrence interval must be greater than zero. Please try again.");
+                return;
+            }
             tasks.Add(new Chore(title, dueDate, recurrenceInterval));
         }
     }
