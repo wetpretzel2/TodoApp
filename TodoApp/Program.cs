@@ -31,14 +31,14 @@
                 switch (userChoice)
                 {
                     case 1:
-                        // logic to add a new appointment
+                        AddAppointment(tasks);
                         break;
                     case 2:
-                        // logic to add a new job
+                        AddJob(tasks);
                         break;
                     case 3:
                         // logic to add a new shopping list item
-                        break; 
+                        break;
                     case 4:
                         //logic to display all tasks
                         break;
@@ -50,6 +50,41 @@
                         break;
                 }
             }
+        }
+        private static void AddAppointment(List<Task> tasks)
+        {
+            Console.WriteLine("Please enter the appointment title: ");
+            string title = Console.ReadLine();
+            Console.WriteLine("Please enter the due date (yyyy-mm-dd): ");
+            if (!DateTime.TryParse(Console.ReadLine(), out DateTime dueDate))
+            {
+                Console.WriteLine("Invalid date format. Please try again.");
+                return;
+            }
+            Console.WriteLine("Appointment location: ");
+            string location = Console.ReadLine();
+            tasks.Add(new Appointment(title, dueDate, location));
+        }
+
+        private static void AddJob(List<Task> tasks)
+        {
+            Console.WriteLine("Please enter the job title: ");
+            string title = Console.ReadLine();
+            Console.WriteLine("Please enter the due date (yyyy-mm-dd): ");
+            if (!DateTime.TryParse(Console.ReadLine(), out DateTime dueDate))
+            {
+                Console.WriteLine("Invalid date format. Please try again.");
+                return;
+            }
+            Console.WriteLine("Enter days between repeats:  ");
+            if (!int.TryParse(Console.ReadLine(), out int days))
+            {
+                Console.WriteLine("Invalid input for recurrence interval. Please try again.");
+                return;
+            }
+            TimeSpan recurrenceInterval = TimeSpan.FromDays(days);
+
+            tasks.Add(new Chore(title, dueDate, recurrenceInterval));
         }
     }
 }
