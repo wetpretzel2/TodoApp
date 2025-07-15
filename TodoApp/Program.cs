@@ -40,10 +40,10 @@
                         AddShoppingItem(tasks);
                         break;
                     case 4:
-                        //logic to display all tasks
+                        DisplayAllTasks(tasks);
                         break;
                     case 5:
-                        //logic to exit the application
+                        Console.WriteLine("Exiting the application. Goodbye!");
                         break;
                     default:
                         Console.WriteLine("Invalid input! Please try again.");
@@ -110,6 +110,13 @@
             tasks.Add(new ShoppingItem(title, dueDate, quantity));
         }
 
-        // TODO: Add the helper method to display all tasks 
+        private static void DisplayAllTasks(List<Task> tasks)
+        {
+            Console.WriteLine("Displaying all tasks:");
+            foreach (var task in tasks)
+            {
+                task.Display();
+            }
+        }
     }
 }
