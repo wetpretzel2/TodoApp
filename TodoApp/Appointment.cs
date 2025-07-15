@@ -7,6 +7,9 @@
         {
             Location = location;
         }
-        public override void Display();
+        public override void Display()
+        {
+            Console.WriteLine($"Appointment: {TaskTitle}, Due: {DueDate}, location: {Location}");
+        }
     }
 }

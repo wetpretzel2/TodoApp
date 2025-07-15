@@ -37,7 +37,7 @@
                         AddJob(tasks);
                         break;
                     case 3:
-                        // logic to add a new shopping list item
+                        AddShoppingItem(tasks);
                         break;
                     case 4:
                         //logic to display all tasks
@@ -90,5 +90,26 @@
             }
             tasks.Add(new Chore(title, dueDate, recurrenceInterval));
         }
+
+        private static void AddShoppingItem(List<Task> tasks)
+        {
+            Console.WriteLine("Please enter the grocery item: ");
+            string title = Console.ReadLine();
+            Console.WriteLine("Please enter the due date (yyyy-mm-dd): ");
+            if (!DateTime.TryParse(Console.ReadLine(), out DateTime dueDate))
+            {
+                Console.WriteLine("Invalid date format. Please try again.");
+                return;
+            }
+            Console.WriteLine("Enter the quantity for the item: ");
+            if (!int.TryParse(Console.ReadLine(), out int quantity) || quantity <= 0)
+            {
+                Console.WriteLine("Invalid quantity. Please try again.");
+                return;
+            }
+            tasks.Add(new ShoppingItem(title, dueDate, quantity));
+        }
+
+        // TODO: Add the helper method to display all tasks 
     }
 }
